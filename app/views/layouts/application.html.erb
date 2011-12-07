@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<%= render :partial => "shared/flash_messages", :locals => {:flash => flash} %>
+
 <%= yield %>
 
 </body>

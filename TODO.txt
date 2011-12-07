@@ -1,0 +1,15 @@
+User model
+-username
+-#
+-password
+
+tags
+-each category belongs to a user
+
+pending transaction
+-when recieve SMS, do some guesswork
+-
+
+posted transaction
+
+'popular spending tags' - auto complete
