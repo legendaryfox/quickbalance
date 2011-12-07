@@ -1,3 +1,5 @@
+pitch - self twitter for keeping track of expenses
+
 User model
 -username
 -#
@@ -13,3 +15,32 @@ pending transaction
 posted transaction
 
 'popular spending tags' - auto complete
+
+
+Use Shorthand
+
+ie
+'w 100 food' means spend 100$ on food (if food is not an existing account)
+'W 25 Bob' means got $25 from Bob
+'amex 12.32 clothes' means spent $12.32 from AMEX on clothes
+'checking 32.12 wallet' means transfered 32.12 from checking account to wallet
+etc etc
+general syntax: '<debit> <amount> <credit>' (ie "I spent from wallet 12.32 on food")
+
+start with w and W
+
+Transaction
+-credit_id
+-debit_id
+--if these are 0, then we use the custom_party field
+
+Account
+user_id - who this account belongs to
+name - what this account name is
+debit_shorthand - what the shorthand is for spending (unique from name, credit_shorthand)
+--longhand = "debit_name", "d_name", "dname", ie if i have an account named "Wallet", i can do "debit_wallet $10"
+credit_shorthand - what the shorthand is for crediting (unique from debit_shorthand; CAN be same as name)
+--longhand = "credit_name" (same as debit_); can also just use Name
+
+interpretation handled before being saved as a pending transaction
+

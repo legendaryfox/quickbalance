@@ -1,0 +1,15 @@
+<h1>Accounts</h1>
+<p>These are all accounts belonging to <%= current_user.email %>:</p>
+
+<%= form_for(Account.new) do |account_form| %>
+	<%= render 'shared/error_messages', :object => account_form.object %>
+	<%= render 'fields', :account_form => account_form %>
+	
+	<%= account_form.submit "Create Account" %>
+<% end %>
+
+<ul>
+	<% @accounts.each do |account| %>
+		<li><%= account.name %> (-<%= account.debit_shorthand %>, +<%= account.credit_shorthand %>)</li>
+	<% end %>
+</ul>

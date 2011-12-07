@@ -1,0 +1,15 @@
+<h1>Transactions</h1>
+<p>These are all transactions belonging to <%= current_user.email %>:</p>
+
+<%= form_for(Transaction.new) do |transaction_form| %>
+	<%= render 'shared/error_messages', :object => transaction_form.object %>
+	<%= render 'fields', :transaction_form => transaction_form %>
+	
+	<%= transaction_form.submit "Create Transaction" %>
+<% end %>
+
+<ul>
+	<% @transactions.each do |transaction| %>
+	<li><%= transaction.description %> <%= transaction.amount %> <%= transaction.created_at %></li>
+	<% end %>
+</ul>

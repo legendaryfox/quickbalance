@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  name: MyString
+  debit_shorthand: MyString
+  credit_shorthand: MyString
+
+two:
+  user_id: 1
+  name: MyString
+  debit_shorthand: MyString
+  credit_shorthand: MyString
+
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id               :integer         not null, primary key
+#  user_id          :integer
+#  name             :string(255)
+#  debit_shorthand  :string(255)
+#  credit_shorthand :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+

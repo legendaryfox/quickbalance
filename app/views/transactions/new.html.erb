@@ -1,0 +1,7 @@
+<h1>Create a new Transaction</h1>
+<%= form_for(@transaction) do |transaction_form| %>
+	<%= render 'shared/error_messages', :object => transaction_form.object %>
+	<%= render 'fields', :transaction_form => transaction_form %>
+	
+	<%= transaction_form.submit "Create Transaction" %>
+<% end %>

@@ -1,10 +1,25 @@
 Quickbalance::Application.routes.draw do
   
+  get "accounts/new"
+
+  get "accounts/show"
+
+  get "accounts/index"
+
+  get "transactions/new"
+
+  get "transactions/index"
+
+  get "transactions/show"
+
   get "pages/home"
 
   devise_for :users
 
-  root :to => "pages#home"
+  root :to => "transactions#index"
+  
+  resources :transactions
+  resources :accounts
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
