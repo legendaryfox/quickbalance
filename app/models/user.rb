@@ -6,11 +6,16 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :transaction_attributes
+  
   
   has_many :transactions
   has_many :accounts
+  
+  accepts_nested_attributes_for :transactions
+  
 
-  def make_transaction!(amount, debitted_id, credited_id, description="", long_description="")
+  def make_transaction(amount, debitted_id, credited_id, description="", long_description="")
   
   
     # First, do some sanitation.
@@ -68,7 +73,7 @@ class User < ActiveRecord::Base
     end
 =end
     
-    self.transactions.create!(:amount => amount, 
+    self.transactions.create( :amount => amount, 
                               :credited_id => credited_id, 
                               :debitted_id => debitted_id, 
                               :custom_credit => custom_credit, 

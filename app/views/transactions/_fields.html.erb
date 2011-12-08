@@ -2,11 +2,15 @@
 	<legend>Transaction Information</legend>
 	
 	From: <%= transaction_form.collection_select(:debitted_id, current_user.accounts.all, :id, :name) %>
+	<%= transaction_form.label :custom_debit %>
+	<%= transaction_form.text_field :custom_debit %>
 	
 	<%= transaction_form.label :amount %>
 	<%= transaction_form.text_field :amount %>
 	
 	To: <%= transaction_form.collection_select(:credited_id, current_user.accounts.all, :id, :name) %>
+	<%= transaction_form.label :custom_credit %>
+	<%= transaction_form.text_field :custom_credit %>
 	
 	<br />
 	<%= transaction_form.label :description %>

@@ -6,6 +6,9 @@ class Transaction < ActiveRecord::Base
   belongs_to :debitted, :class_name => "Account"
   belongs_to :credited, :class_name => "Account"
   
+  validates :amount, :presence => true
+  # validates :description, :presence => true
+  
   
   
   
