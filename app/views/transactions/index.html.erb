@@ -8,8 +8,27 @@
 	<%= transaction_form.submit "Create Transaction" %>
 <% end %>
 
-<ul>
-	<% @transactions.each do |transaction| %>
-	<li><%= transaction.description %> <%= transaction.amount %> <%= transaction.created_at %></li>
-	<% end %>
-</ul>
+
+<table>
+	<thead>
+		<tr>
+			<th>From</th>
+			<th>Amount</th>
+			<th>To</th>
+			<th>Description</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @transactions.each do |transaction| %>
+			<tr>
+				<td><%= transaction.custom_credit %></td>
+				<td><%= transaction.amount %></td>
+				<td><%= transaction.custom_debit %></td>
+				<td><%= transaction.description %></td>
+				<td><%= transaction.created_at %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+

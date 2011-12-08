@@ -3,20 +3,14 @@ class Account < ActiveRecord::Base
   
   belongs_to :user
   
-  has_many :transactions
-  has_many :credit_transactions, :through => :transactions, :source => :credit
-  has_many :debit_transactions, :through => :transactions, :source => :debit
+  has_many :credit_transactions, :class_name => "Transaction", :foreign_key => 'credited_id'
+  has_many :debit_transactions, :class_name => "Transaction", :foreign_key => 'debitted_id'
   
   
-=begin  
-  has_many  :credit_transactions, 
-            :through => :transactions, 
-            :foreign_key => "credit_id"
-            
-  has_many  :debit_transactions,
-            :through => :transactions,
-            :foreign_key => "debit_id"
-=end            
+ 
+  
+  
+  
             
 end
 

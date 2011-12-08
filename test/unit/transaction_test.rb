@@ -9,6 +9,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: transactions
@@ -19,8 +21,8 @@ end
 #  description      :text
 #  created_at       :datetime
 #  updated_at       :datetime
-#  credit_id        :integer
-#  debit_id         :integer
+#  credited_id      :integer
+#  debitted_id      :integer
 #  long_description :string(255)
 #  custom_credit    :string(255)
 #  custom_debit     :string(255)

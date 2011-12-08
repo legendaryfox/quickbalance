@@ -1,19 +1,12 @@
 <fieldset>
 	<legend>Transaction Information</legend>
 	
-	From:
-	#debit account dropdown
-	#debit account custom
-	
-	Amount:
-	#input box
-	
-	To:
-	#credit account dropdown
-	#credit account custom
+	From: <%= transaction_form.collection_select(:debitted_id, current_user.accounts.all, :id, :name) %>
 	
 	<%= transaction_form.label :amount %>
 	<%= transaction_form.text_field :amount %>
+	
+	To: <%= transaction_form.collection_select(:credited_id, current_user.accounts.all, :id, :name) %>
 	
 	<br />
 	<%= transaction_form.label :description %>
