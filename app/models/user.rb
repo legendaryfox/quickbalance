@@ -7,82 +7,31 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   attr_accessible :transaction_attributes
+  attr_accessible :pending_transactions_attributes
   
   
   has_many :transactions
+  has_many :pending_transactions
   has_many :accounts
   
   accepts_nested_attributes_for :transactions
+  accepts_nested_attributes_for :pending_transactions
   
-
-  def make_transaction(amount, debitted_id, credited_id, description="", long_description="")
-  
-  
-    # First, do some sanitation.
-    custom_credit = ""
-    custom_debit = ""
-    
-   if self.accounts.find_by_id(debitted_id.to_i)
-     # This is a valid account that belongs to User
-     custom_debit = self.accounts.find_by_id(debitted_id.to_i).name
-   else
-     custom_debit = debitted_id.to_s
-     debitted_id = 0
-   end
-   
-   if self.accounts.find_by_id(credited_id.to_i)
-     # This is a valid account that belongs to User
-     custom_credit = self.accounts.find_by_id(credited_id.to_i).name
-   else
-     custom_credit = credited_id.to_s
-     credited_id = 0
-   end
-   
-=begin    
-    ## Debitor
-    if debitted_id.is_a? Integer
-      
-      if self.accounts.find_by_id(debitted_id.to_i)
-        custom_debit = self.accounts.find_by_id(debitted_id.to_i).name
-      else
-        # Error...
-        custom_debit = debitted_id.to_s
-        debitted_id = 0
-      end
-      
-    else
-      # Specified a string - save as a string
-      custom_debit = debitted_id.to_s
-      debitted_id = 0 # Our custom account
+  def debit_shorthands
+    shorthands = Array.new
+    self.accounts.each do |account|
+      shorthands.push(account.debit_shorthand)
     end
-    
-    ## Creditor
-    if credited_id.is_a? Integer
-      
-      if self.accounts.find_by_id(credited_id.to_i)
-        custom_credit = self.accounts.find_by_id(credited_id.to_i).name
-      else
-        # Error
-        custom_credit= credited_id.to_s
-        credited_id = 0
-      end
-    else
-      #Specified a string - save as a string
-      custom_credit = credited_id.to_s
-      credited_id = 0 # Our custom account
-    end
-=end
-    
-    self.transactions.create( :amount => amount, 
-                              :credited_id => credited_id, 
-                              :debitted_id => debitted_id, 
-                              :custom_credit => custom_credit, 
-                              :custom_debit => custom_debit,
-                              :description => description,
-                              :long_description => long_description)
-  
+    return shorthands
   end
   
+  def credit_shorthands
+    shorthands = Array.new
+    self.accounts.each do |account|
+      shorthands.push(account.credit_shorthand)
+    end
+    return shorthands
+  end
     
   
   

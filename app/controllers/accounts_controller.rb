@@ -6,6 +6,9 @@ class AccountsController < ApplicationController
   
   def create
     @account = current_user.accounts.build(params[:account])
+    
+    # When adding shortcode, we need to make sure that shortcuts are not shared by any other account under the user.
+    
     if @account.save
       redirect_to accounts_path, :success => "Account successfully created."
     else

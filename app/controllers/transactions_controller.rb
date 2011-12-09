@@ -8,8 +8,11 @@ class TransactionsController < ApplicationController
   def create
     @transaction = current_user.transactions.new(params[:transaction])
     
-    @transaction.debitted_id = 0 if !@transaction.custom_debit.blank?     # debitted_id is 0 if custom_debit is not blank
-    @transaction.credited_id = 0 if !@transaction.custom_credit.blank?    # credited_id is 0 if custom_credit is not blank
+    # begin code to be moved to before_save function
+    # @transaction.debitted_id = 0 if !@transaction.custom_debit.blank?     # debitted_id is 0 if custom_debit is not blank
+    # @transaction.credited_id = 0 if !@transaction.custom_credit.blank?    # credited_id is 0 if custom_credit is not blank
+    # end 
+    
     
     if @transaction.save
       @transactions = current_user.transactions.all(:order => 'created_at DESC')

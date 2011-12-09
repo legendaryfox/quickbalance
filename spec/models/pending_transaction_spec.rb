@@ -5,6 +5,7 @@ describe PendingTransaction do
 end
 
 
+
 # == Schema Information
 #
 # Table name: pending_transactions
@@ -19,5 +20,7 @@ end
 #  created_at       :datetime
 #  updated_at       :datetime
 #  shortcode        :string(255)
+#  credited_id      :integer
+#  debitted_id      :integer
 #
 

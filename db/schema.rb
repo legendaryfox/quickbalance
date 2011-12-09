@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209144051) do
+ActiveRecord::Schema.define(:version => 20111209144935) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20111209144051) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "shortcode"
+    t.integer  "credited_id"
+    t.integer  "debitted_id"
+  end
+
+  create_table "shortcode_parsers", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "transactions", :force => true do |t|

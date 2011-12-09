@@ -6,10 +6,24 @@ class Transaction < ActiveRecord::Base
   belongs_to :debitted, :class_name => "Account"
   belongs_to :credited, :class_name => "Account"
   
+  before_save :sanitize_debit, :sanitize_credit
+  
   validates :amount, :presence => true
   # validates :description, :presence => true
   
   
+  private
+  
+  # @transaction.debitted_id = 0 if !@transaction.custom_debit.blank?     # debitted_id is 0 if custom_debit is not blank
+  # @transaction.credited_id = 0 if !@transaction.custom_credit.blank?    # credited_id is 0 if custom_credit is not blank
+  
+    def sanitize_debit
+      self.debitted_id = nil if !self.custom_debit.blank?   # set debitted_id to 0 if custom_debit is not blank
+    end
+    
+    def sanitize_credit
+      self.credited_id = nil if !self.custom_credit.blank?  # set credited_id to 0 if custom_credit is not blank
+    end
   
   
   
