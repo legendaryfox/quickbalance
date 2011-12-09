@@ -10,6 +10,6 @@
 
 <ul>
 	<% @accounts.each do |account| %>
-		<li><%= account.name %> (-<%= account.debit_shorthand %>, +<%= account.credit_shorthand %>)</li>
+		<li><%= link_to account.name, account %> (-<%= account.debit_shorthand %>, +<%= account.credit_shorthand %>)</li>
 	<% end %>
 </ul>

@@ -1,2 +1,3 @@
-<h1>Accounts#show</h1>
-<p>Find me in app/views/accounts/show.html.erb</p>
+<h1><%= @account.user.email.possessive %> <%= @account.name %></h1>
+
+<%= render 'transaction_table', :transactions => @transactions %>

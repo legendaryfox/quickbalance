@@ -15,6 +15,10 @@ class AccountsController < ApplicationController
 
   def show
     @account = Account.find_by_id(params[:id])
+    @debit_transactions = @account.debit_transactions.all
+    @credit_transactions = @account.credit_transactions.all
+    @transactions = (@debit_transactions + @credit_transactions).uniq
+    @transactions.sort! { |a,b| b.created_at <=> a.created_at }
   end
 
   def index

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111208044650) do
+ActiveRecord::Schema.define(:version => 20111209144051) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(:version => 20111208044650) do
     t.string   "credit_shorthand"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "pending_transactions", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "amount",           :precision => 8, :scale => 2
+    t.text     "description"
+    t.text     "long_description"
+    t.string   "custom_credit"
+    t.string   "custom_debit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "shortcode"
   end
 
   create_table "transactions", :force => true do |t|
@@ -47,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20111208044650) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
